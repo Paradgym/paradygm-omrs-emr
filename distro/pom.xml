@@ -8,7 +8,7 @@
   </parent>
 
   <artifactId>distro-emr-configuration</artifactId>
-  <name>OpenMRS distro</name>
+  <name>Paradygm distro</name>
   <packaging>pom</packaging>
 
   <properties>
@@ -54,9 +54,13 @@
     <!-- Stock Management and Billing -->
     <stockmanagement.version>2.0.2</stockmanagement.version>
     <billing.version>1.2.0</billing.version>
+    <!--Datafilter Module-->
+    <datafilter.version>2.3.0-SNAPSHOT</datafilter.version>
+    <!--Paradygm Custom MOdule-->
+    <paradygm.version>1.0.0-SNAPSHOT</paradygm.version>
     <!-- Content Packages -->
-    <reference-content.version>1.0.0</reference-content.version>
-    <reference-demo-content.version>1.0.0</reference-demo-content.version>
+    <reference-content.version>1.1.1</reference-content.version>
+    <paradygm-content.version>1.0.0-SNAPSHOT</paradygm-content.version>
   </properties>
 
   <dependencies>
@@ -229,6 +233,18 @@
       <groupId>org.openmrs.module</groupId>
       <artifactId>billing-omod</artifactId>
       <version>${billing.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>datafilter-omod</artifactId>
+      <version>${datafilter.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>paradygm-emr-omod</artifactId>
+      <version>${paradygm.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

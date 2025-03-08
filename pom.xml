@@ -158,6 +158,11 @@
       </snapshots>
     </repository>
     <repository>
+        <id>local-maven-repo</id>
+        <name>Local Maven Repository</name>
+        <url>file://${user.home}/.m2/repository</url>
+    </repository>
+    <repository>
       <id>sonatype-nexus-snapshots</id>
       <name>Sonatype Nexus Snapshots</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -198,6 +203,11 @@
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>local-maven-repo</id>
+        <name>Local Maven Repository</name>
+        <url>file://${user.home}/.m2/repository</url>
     </pluginRepository>
   </pluginRepositories>
 

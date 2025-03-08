@@ -2,6 +2,10 @@
   "@openmrs/esm-patient-chart-app": {
     "restrictByVisitLocationTag": true,
     "showUpcomingAppointments": true,
+    "logo": {
+      "src": "${openmrsSpaBase}/nav-logo.png",
+      "alt": "Logo"
+    },
     "extensionSlots": {
       "action-menu-patient-chart-items-slot": {
         "order": ["order-basket-action-menu"]
@@ -47,6 +51,23 @@
     "defaultFacilityUrl": ""
   },
   "@openmrs/esm-styleguide": {
-    "Brand color #1": "#005d5d"
+    "Brand color #1": "#1b1f23",
+    "Brand color #2": "#8AB503",
+    "Brand color #3": "#A2D104"
+  },
+  "@openmrs/esm-login-app": {
+    "logo": {
+      "src": "${openmrsSpaBase}/logo.png",
+      "alt": "Logo"
+    }
+  },
+  "@openmrs/esm-primary-navigation-app": {
+    "logo": {
+      "src": "${openmrsSpaBase}/nav-logo.png",
+      "alt": "Logo"
+    }
+  },
+  "@openmrs/esm-billing-app": {
+    "defaultCurrency": "USD"
   }
 }

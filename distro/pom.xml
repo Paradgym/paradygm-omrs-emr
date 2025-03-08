@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.openmrs</groupId>
     <artifactId>distro-emr</artifactId>
-    <version>3.4.0-SNAPSHOT</version>
+    <version>3.4.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>distro-emr-configuration</artifactId>
@@ -35,8 +35,8 @@
     <openconceptlab.version>2.4.0</openconceptlab.version>
     <attachments.version>3.6.0</attachments.version>
     <referencedemodata.version>2.5.0</referencedemodata.version>
-    <queue.version>2.4.0</queue.version>
-    <appointments.version>2.0.0-20240305.062514-14</appointments.version>
+    <queue.version>2.6.0-SNAPSHOT</queue.version>
+    <appointments.version> 2.1.0-SNAPSHOT</appointments.version>
     <teleconsultation.version>2.0.0-20230831.113926-1</teleconsultation.version>
     <cohort.version>3.7.3</cohort.version>
     <reporting.version>1.27.0</reporting.version>
@@ -60,7 +60,11 @@
     <paradygm.version>1.0.0-SNAPSHOT</paradygm.version>
     <!-- Content Packages -->
     <reference-content.version>1.1.1</reference-content.version>
+<<<<<<< HEAD
     <paradygm-content.version>1.0.0-SNAPSHOT</paradygm-content.version>
+=======
+    <reference-demo-content.version>1.1.0</reference-demo-content.version>
+>>>>>>> bc2e12772fbfa2db5f65d0ef8bce2660c1de3ff6
   </properties>
 
   <dependencies>

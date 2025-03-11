@@ -38,7 +38,7 @@
     "@openmrs/esm-user-onboarding-app": "latest",
     "@openmrs/esm-ward-app": "latest",
     "@openmrs/esm-stock-management-app": "latest",
-    "@openmrs/esm-billing-app": "latest",
+    "@openmrs/esm-billing-app": "next",
     "@openmrs/esm-reports-app": "latest"
   },
   "__comment": "Excluding modules some default modules to ensure we are using the specified versions.",

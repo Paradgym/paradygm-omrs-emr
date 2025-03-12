@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 ### Dev Stage
-FROM openmrs/openmrs-core:dev-amazoncorretto-11 AS dev
+FROM openmrs/openmrs-core:dev-amazoncorretto-17 AS dev
 
 # Set up the local Maven repository
 VOLUME /root/.m2/repository
@@ -51,7 +51,7 @@ RUN mvn $MVN_ARGS_SETTINGS clean
 
 ### Run Stage
 # Replace 'nightly' with the exact version of openmrs-core built for production (if available)
-FROM openmrs/openmrs-core:nightly-amazoncorretto-11
+FROM openmrs/openmrs-core:nightly-amazoncorretto-17
 
 # Do not copy the war if using the correct openmrs-core image version
 COPY --from=dev /openmrs/distribution/openmrs_core/openmrs.war /openmrs/distribution/openmrs_core/

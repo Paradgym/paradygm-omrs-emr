@@ -9,6 +9,7 @@ services:
       - backend
     ports:
       - "80:80"
+      - "443:443"
 
   frontend:
     image: openmrs/openmrs-reference-application-3-frontend:${TAG:-qa}

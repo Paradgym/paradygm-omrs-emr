@@ -65,9 +65,6 @@ fi
 
 # Check if certificates exist, if not, generate them
 if [ ! -f /etc/nginx/ssl/fullchain.pem ] || [ ! -f /etc/nginx/ssl/privkey.pem ]; then
-    # Create directory for certificates
-    mkdir -p /etc/nginx/ssl
-    
     # Check if we're in production mode with a domain
     if [ ! -z "$DOMAIN" ]; then
         echo "Requesting Let's Encrypt certificate for $DOMAIN..."

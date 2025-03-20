@@ -41,17 +41,11 @@ server {
 server {
   listen 443 ssl;
   http2 on;
-  server_name localhost;
+  server_name ${DOMAIN:-localhost};
   
   # SSL configuration
-  ssl_certificate /etc/nginx/ssl/nginx-selfsigned.crt;
-  ssl_certificate_key /etc/nginx/ssl/nginx-selfsigned.key;
-  ssl_protocols TLSv1.2 TLSv1.3;
-  ssl_prefer_server_ciphers on;
-  ssl_session_cache shared:SSL:10m;
-  ssl_ciphers HIGH:!aNULL:!MD5;
-  ssl_stapling on;
-  ssl_stapling_verify on;
+  ssl_certificate /etc/nginx/ssl/fullchain.pem;
+  ssl_certificate_key /etc/nginx/ssl/privkey.pem;
   
   # Security headers
   add_header X-XSS-Protection "1; mode=block";

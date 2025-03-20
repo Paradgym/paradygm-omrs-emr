@@ -63,4 +63,41 @@ if [ -n "$PAGE_TITLE" ] && [ -f "/usr/share/nginx/html/index.html" ]; then
   sed -i -e "s|<title>.*</title>|<title>${PAGE_TITLE}</title>|g" "/usr/share/nginx/html/index.html"
 fi
 
+# Check if certificates exist, if not, generate them
+if [ ! -f /etc/nginx/ssl/fullchain.pem ] || [ ! -f /etc/nginx/ssl/privkey.pem ]; then
+    # Create directory for certificates
+    mkdir -p /etc/nginx/ssl
+    
+    # Check if we're in production mode with a domain
+    if [ ! -z "$DOMAIN" ]; then
+        echo "Requesting Let's Encrypt certificate for $DOMAIN..."
+        
+        # Request certificate
+        certbot certonly --standalone \
+            --non-interactive --agree-tos \
+            --email $EMAIL \
+            --domain $DOMAIN \
+            --keep-until-expiring
+            
+        # Link the certificates
+        ln -sf /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/nginx/ssl/fullchain.pem
+        ln -sf /etc/letsencrypt/live/$DOMAIN/privkey.pem /etc/nginx/ssl/privkey.pem
+    else
+        echo "No domain specified, generating self-signed certificate..."
+        openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
+            -keyout /etc/nginx/ssl/privkey.pem \
+            -out /etc/nginx/ssl/fullchain.pem \
+            -subj "/C=US/ST=State/L=City/O=Organization/CN=localhost" \
+            -addext "subjectAltName = DNS:localhost,IP:127.0.0.1" \
+            -addext "extendedKeyUsage = serverAuth"
+        chmod 600 /etc/nginx/ssl/privkey.pem
+    fi
+fi
+
+# Set up auto-renewal
+if [ -n "$DOMAIN" ]; then
+    echo "Setting up certificate auto-renewal..."
+    exec watch -n 43200 "certbot renew --quiet"
+fi
+
 exec nginx -g "daemon off;"

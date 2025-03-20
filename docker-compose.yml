@@ -10,6 +10,13 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      - DOMAIN=paradygmemr.com
+      - EMAIL=ssebaanajoshua@gmail.com
+      - FRAME_ANCESTORS=
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - certbot:/var/lib/letsencrypt
 
   frontend:
     image: openmrs/openmrs-reference-application-3-frontend:${TAG:-qa}
@@ -65,3 +72,5 @@ services:
 volumes:
   openmrs-data: ~
   db-data: ~
+  letsencrypt:
+  certbot:

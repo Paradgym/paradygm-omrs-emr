@@ -31,7 +31,11 @@ upstream backend {
 # HTTP server - redirects to HTTPS
 server {
   listen 80;
-  server_name localhost;
+  server_name ${DOMAIN - localhost};
+
+  location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
   
   # Redirect all HTTP requests to HTTPS
   return 301 https://$host$request_uri;
@@ -44,9 +48,8 @@ server {
   server_name ${DOMAIN};
   
   # SSL configuration
-  ssl_certificate /etc/letsencrypt/live/paradygmemr.com/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/paradygmemr.com/privkey.pem;
-
+  ssl_certificate /etc/nginx/ssl/fullchain.pem;
+  ssl_certificate_key /etc/nginx/ssl/privkey.pem;
   
   # Security headers
   add_header X-XSS-Protection "1; mode=block";

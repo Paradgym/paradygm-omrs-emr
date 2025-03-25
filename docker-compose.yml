@@ -8,17 +8,7 @@ services:
       - frontend
       - backend
     ports:
-      - "80:80"
-      - "443:443"
-    environment:
-      - DOMAIN=${DOMAIN}
-      - EMAIL=${EMAIL}
-      - FRAME_ANCESTORS=
-    volumes:
-      - letsencrypt:/etc/letsencrypt
-      - certbot:/var/lib/letsencrypt
-      - /etc/nginx/ssl:/etc/nginx/ssl
-      - ./certbot/www:/var/www/certbot
+      - "8080:80"
 
   frontend:
     image: openmrs/openmrs-reference-application-3-frontend:${TAG:-qa}
@@ -27,7 +17,7 @@ services:
       SPA_PATH: /openmrs/spa
       API_URL: /openmrs
       SPA_CONFIG_URLS: /openmrs/spa/config-core_demo.json
-      SPA_DEFAULT_LOCALE: en
+      SPA_DEFAULT_LOCALE:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
       timeout: 5s
@@ -71,27 +61,6 @@ services:
     volumes:
       - db-data:/var/lib/mysql
 
-  # Certbot for SSL Renewal
-  certbot:
-    image: certbot/certbot
-    restart: "unless-stopped"
-    volumes:
-      - letsencrypt:/etc/letsencrypt
-      - certbot:/var/lib/letsencrypt
-      - /etc/nginx/ssl:/etc/nginx/ssl
-      - ./certbot/www:/var/www/certbot
-    entrypoint: >
-      sh -c "trap exit TERM;
-      if [ ! -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
-      certbot certonly --webroot -w /var/www/certbot --email $EMAIL --agree-tos --no-eff-email -d $DOMAIN;
-      fi;
-      while :; do
-      certbot renew --webroot -w /var/www/certbot && sleep 12h; done"
-    depends_on:
-      - gateway
-
 volumes:
   openmrs-data: ~
   db-data: ~
-  letsencrypt:
-  certbot:

@@ -20,7 +20,6 @@ map $forwarded_proto $var_proxy_cookie_flags {
 }
 
 upstream frontend {
-  # always assume the frontend will be available
   server frontend max_fails=0;
 }
 
@@ -39,13 +38,10 @@ server {
   proxy_set_header      X-Forwarded-Proto $forwarded_proto;
   proxy_set_header      X-Real-IP $forwarded_ip;
   proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
-  # if serving this via HTTPS, the following is recommended
-  # proxy_cookie_flags      $var_proxy_cookie_flags;
   proxy_http_version    1.1;
 
   gzip on;
   gzip_vary on;
-  # 1 KiB
   gzip_min_length 1024;
   gzip_proxied any;
   gzip_http_version 1.0;
@@ -73,23 +69,47 @@ server {
               application/xhtml+xml
               application/xml;
 
-  # all redirects are relative to the gateway
   absolute_redirect off;
 
-  location = /openmrs/spa {
-    return 301 /openmrs/spa/;
+  # New /emr/ endpoints
+  location = /emr {
+    return 301 /emr/;
   }
 
-  location /openmrs/spa/ {
+  location /emr/ {
+    # Proxy to the frontend but maintain /emr/ in the browser
     proxy_pass http://frontend/;
-    proxy_redirect http://$host/ /openmrs/spa/;
-  }
+    
+    # Rewrite all /openmrs/spa requests to /
+    rewrite ^/openmrs/spa/(.*)$ /$1 break;
+    
+    # Rewrite response content to replace /openmrs/spa with /emr
+    sub_filter '/openmrs/spa' '/emr';
+    sub_filter_once off;
+    sub_filter_types *;
+    
+    # Required for sub_filter to work
+    proxy_set_header Accept-Encoding "";
+    
+    # Handle the JSON files specifically
+    location ~ ^/emr/(importmap\.json|routes\.registry\.json)$ {
+        proxy_pass http://frontend/$1;
+    }
+}
 
+# Static assets - adjust this based on where they actually are
+location / {
+    root /usr/share/nginx/html;
+    try_files $uri $uri/ /index.html;
+}
+
+  # Keep existing /openmrs backend routes
   location /openmrs {
     proxy_pass http://backend;
   }
 
+  # Update root redirect to point to /emr/
   location = / {
-    return 301 /openmrs/spa/;
+    return 301 /emr/;
   }
 }

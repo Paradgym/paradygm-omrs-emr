@@ -3,7 +3,7 @@
   <groupId>org.openmrs.module</groupId>
   <artifactId>paradygm-emr-omod</artifactId>
   <versioning>
-    <lastUpdated>20250402200212</lastUpdated>
+    <lastUpdated>20250413230823</lastUpdated>
     <snapshot>
       <localCopy>true</localCopy>
     </snapshot>
@@ -11,12 +11,12 @@
       <snapshotVersion>
         <extension>pom</extension>
         <value>1.0.0-SNAPSHOT</value>
-        <updated>20250402200212</updated>
+        <updated>20250413230823</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>jar</extension>
         <value>1.0.0-SNAPSHOT</value>
-        <updated>20250402200212</updated>
+        <updated>20250413230823</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>

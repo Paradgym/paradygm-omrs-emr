@@ -62,6 +62,24 @@
     }
   },
   "@openmrs/esm-primary-navigation-app": {
+    "extensionSlots": {
+      "top-nav-app-menu-slot": {
+        "remove": [
+          "app-menu-button"
+        ]
+      },
+      "top-nav-actions-slot": {
+        "remove": [
+          "implementer-tools-button"
+        ]
+      },
+      "homepage-dashboard-slot": {
+        "remove": [
+          "ward-dashboard-link",
+          "data-visualizer-dashboard-link"
+        ]
+      }
+    },
     "logo": {
       "src": "${openmrsSpaBase}/nav-logo.png",
       "alt": "Logo"

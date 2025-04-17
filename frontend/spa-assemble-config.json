@@ -20,7 +20,7 @@
     "@openmrs/esm-patient-allergies-app": "next",
     "@openmrs/esm-patient-attachments-app": "next",
     "@openmrs/esm-patient-banner-app": "next",
-    "@openmrs/esm-patient-chart-app": "latest",
+    "@openmrs/esm-patient-chart-app": "next",
     "@openmrs/esm-patient-conditions-app": "next",
     "@openmrs/esm-patient-flags-app": "next",
     "@openmrs/esm-patient-forms-app": "next",
@@ -43,9 +43,15 @@
     "@openmrs/esm-stock-management-app": "next",
     "@openmrs/esm-billing-app": "next"
   },
-  "__comment": "Excluding modules some default modules to ensure we are using the specified versions.",
   "excludedFrontendModules": [
     "@openmrs/esm-help-menu-app",
-    "@openmrs/esm-patient-immunizations-app"
+    "@openmrs/esm-patient-immunizations-app",
+    "@ugandaemr/esm-data-visualizer-app",
+    "@openmrs/esm-ward-app",
+    "@openmrs/esm-openconceptlab-app",
+    "@openmrs/esm-implementer-tools-app",
+    "@openmrs/esm-patient-programs-app",
+    "@openmrs/esm-patient-immunizations-app",
+    "@openmrs/esm-implementer-tools-app"
   ]
 }

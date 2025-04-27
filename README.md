@@ -16,7 +16,7 @@ docker compose build
 docker compose up
 ```
 
-The new UI is accessible at http://localhost/openmrs/spa
+The new UI is accessible at http://localhost/emr/
 
 OpenMRS Legacy UI is accessible at http://localhost/openmrs
 

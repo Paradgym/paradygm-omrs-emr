@@ -87,5 +87,8 @@
   },
   "@openmrs/esm-billing-app": {
     "defaultCurrency": "USD"
+  },
+  "@openmrs/esm-form-builder-app": {
+    "enableFormValidation": true
   }
 }

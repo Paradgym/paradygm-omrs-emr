@@ -169,7 +169,7 @@
     	</repository>
     	<snapshotRepository>
 			<id>paradygm-emr-content-package</id>
-        	<name>Paradgym repo for content packages snapshots</name>
+        	<name>Paradygm repo for content packages snapshots</name>
         	<url>https://maven.pkg.github.com/Paradgym/openmrs-content-paradygm</url>
     	</snapshotRepository>
 	</distributionManagement>
